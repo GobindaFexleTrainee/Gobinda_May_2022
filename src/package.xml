@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Pan_Card__c</members>
-        <members>StudentSubjects__c</members>
-        <members>Subject__c</members> 
-        <members>Teacher__c</members> 
-        <members>Year_of_Class__c</members>
-        <members>College__c</members>
-        <members>Employee__c</members>
+        <members>Down_Triangle_Star_pattern</members>
+        <members>Downward_Triangle_Star_Pattern</members>
+        <members>Left_Triangle_Pascal_Pattern</members>
+        <members>Left_Triangle_Pattern</members>
+        <members>Reversed_Pyramid_Star_Pattern</members> 
+        <members>HelloWorldTestClass</members>
+        <members>MyHelloWorld</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>HelloWorldTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Book__c</members>
         <name>CustomObject</name>
-    </types>
-    <types>
-        <members>Pan_Card__c</members>
-        <members>StudentSubjects__c</members>
-        <members>Subject__c</members> 
-        <members>Teacher__c</members> 
-        <members>Year_of_Class__c</members>
-        <members>College__c</members>
-        <members>Employee__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>Contact.Pan_Card__c</members>
-        <members>Lead.Account__c</members>
-        <members>Student__c.Year_of_Class__c</members>
-        <name>CustomField</name>
     </types>
     <version>53.0</version>
 </Package>
