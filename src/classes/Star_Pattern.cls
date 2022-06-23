@@ -1,32 +1,32 @@
 public class Star_Pattern {
     public static void left_triangle_pattern(){ 
-        for(integer i=1;i<6;i++)
+        for(integer row=1;row<6;row++)
         {
-             string s=' ';
-            for(integer j=1;j<6;j++)
+             string display_pattern=' ';
+            for(integer column=1;column<6;column++)
             {
-                if(6-i<=j)
+                if(6-row<=column)
                 {
-                    s = s + '*';        
+                    display_pattern = display_pattern + '*';        
                 }
                 else
                 {
-                    s = s + '_';    
+                    display_pattern = display_pattern + '_';    
                 } 
             }
-            system.debug(s); 
+            system.debug(display_pattern); 
         }     
     }
     public static void down_triangle_star_pattern(){
         boolean b=true;
-        for(integer i=1;i<=5;i++)
+        for(integer row=1;row<=5;row++)
         {
-            string s=' ';
-            for(integer j=1;j<=9;j++)
+            string display_pattern=' ';
+            for(integer column=1;column<=9;column++)
             {
-                 if(i>=2 && i<=4)
+                 if(row>=2 && row<=4)
                  {
-                   if(j>=i+1 && j<=9-i)
+                   if(column>=row+1 && column<=9-row)
                    {
                       b=false;
                    }
@@ -34,80 +34,77 @@ public class Star_Pattern {
                    {
                       b=true;
                    }
-                
-                   }
+                 }
                  else
                  {
                    b=true;
                  }
-                 if(j>=i && j<=10-i && b)
+                 if(column>=row && column<=10-row && b)
                  {
-                     s=s+'*';
+                    display_pattern=display_pattern+'*';
                  }
-                else
-                {
-                    s=s+'_';
-                }
+                 else
+                 {
+                    display_pattern=display_pattern+'_';
+                 }
             } 
-            system.debug(s);
+            system.debug(display_pattern);
        }
     }
     public static void downward_triangle_star_pattern(){
-        for(integer i=1;i<=5;i++){
-            string s=' ';
-            for(integer j=1;j<=5;j++){
-                if(j<=6-i)
+        for(integer row=1;row<=5;row++){
+            string display_pattern=' ';
+            for(integer column=1;column<=5;column++){
+                if(column<=6-row)
                 {
-                    s=s+'*';
+                    display_pattern=display_pattern+'*';
                 }
                 else
                 {
-                    s=s+'_';
+                    display_pattern=display_pattern+'_';
                 }
             }
-            system.debug(s);
+            system.debug(display_pattern);
         }
     }
     public static void left_triangle_pascal_pattern(){
-        integer k=6; 
-        for(integer i=1;i<=9;i++){
-            if(i<=5)
+        integer column_incre_or_decre=6; 
+        for(integer row=1;row<=9;row++){
+            if(row<=5)
             {
-                k--;
+                column_incre_or_decre--;
             } 
             else
             {
-                k++;
+                column_incre_or_decre++;
             }
             string s=' ';         
-            for(integer j=1;j<=5;j++){
-                if(j>=k){
-                    s=s+'*';
+            for(integer column=1;column<=5;column++){
+                if(column>=column_incre_or_decre){
+                    display_pattern=display_pattern+'*';
                 }
-       
                 else{
-                    s=s+'_';
+                    display_pattern=display_pattern+'_';
                 }
             }
-            system.debug(s);
+            system.debug(display_pattern);
         }
     }
     public static void reversed_pyramid_star_pattern(){
-        for(integer i=1;i<=5;i++){
-            string s='';
+        for(integer row=1;row<=5;row++){
+            string display_pattern='';
             boolean b=true;
-            for(integer j=1;j<=9;j++){
-                if(j>=i && j<=10-i && b){
-                    s=s+'*';
+            for(integer column=1;column<=9;column++){
+                if(column>=row && column<=10-row && b){
+                    display_pattern=display_pattern+'*';
                     b=false;
                 }
                 else{
-                    s=s+'_';
+                    display_pattern=display_pattern+'_';
                     b=true;      
                 }
             }
-            system.debug(s);
+            system.debug(display_pattern);
         }
     }
-
 }
