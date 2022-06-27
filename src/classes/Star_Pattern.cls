@@ -2,7 +2,7 @@ public class Star_Pattern {
     public static void left_triangle_pattern(){ 
         for(integer row=1;row<6;row++)
         {
-             string display_pattern=' ';
+            string display_pattern=' ';
             for(integer column=1;column<6;column++)
             {
                 if(6-row<=column)
@@ -26,14 +26,14 @@ public class Star_Pattern {
             {
                  if(row>=2 && row<=4)
                  {
-                   if(column>=row+1 && column<=9-row)
-                   {
-                      b=false;
-                   }
-                   else
-                   {
-                      b=true;
-                   }
+                    if(column>=row+1 && column<=9-row)
+                    {
+                        b=false;
+                    }
+                    else
+                    {
+                        b=true;
+                    }
                  }
                  else
                  {
@@ -70,7 +70,7 @@ public class Star_Pattern {
     public static void left_triangle_pascal_pattern(){
         integer column_incre_or_decre=6;  
         for(integer row=1;row<=9;row++){
-            string display_patter=' ';
+            string display_pattern=' ';
             if(row<=5)
             {
                 column_incre_or_decre--;
@@ -107,7 +107,7 @@ public class Star_Pattern {
             system.debug(display_pattern);
         }
     }
-    public static void User_Defined_left_triangle_pascal_pattern(integer no_row)
+    public static void left_triangle_pascal_pattern(integer no_row)
     {
         if(math.mod(no_row,2)!=0)
         {
