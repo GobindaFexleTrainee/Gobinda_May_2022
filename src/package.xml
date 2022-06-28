@@ -4,6 +4,13 @@
         <members>HelloWorldTestClass</members>
         <members>MyHelloWorld</members>
         <members>Star_Pattern</members>
+        <members>CallByValueAndReference</members>
+        <members>ControlFlowStatements</members>
+        <members>DisplayPersonalInfo</members>
+        <members>PersonalInformation</members>
+        <members>ExpressionsAndOperators</members>
+        <members>BasicOfApex</members>
+        <members>YogaClasses</members>
         <name>ApexClass</name>
     </types>
     <types>
