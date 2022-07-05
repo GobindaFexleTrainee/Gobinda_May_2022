@@ -73,7 +73,7 @@ public with sharing class Country {
         //mapOfCountrywithCountryCode
         mapOfCountrywithCountryCodeContinent.put('+91',mapOfStatewithCountryAsia);
         mapOfCountrywithCountryCodeContinent.put('+41',mapOfStatewithCountryEurope);
-   }
+    }
   //Find a such country ,state and district combination where start with s
     public void searchWithLetter(string letter){
         for(string countrycode: mapOfCountrywithCountryCodeContinent.keySet()){
