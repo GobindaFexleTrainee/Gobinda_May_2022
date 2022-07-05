@@ -1,7 +1,7 @@
 public with sharing class Country {
  
   //mapOfCountrywithCountryCode
-  Map<string,Map<string,Map<string,List<String>>>>   mapOfCountrywithCountryCodeContinent = new Map<string,Map<string,Map<string,List<String>>>>();
+  Map<string,Map<string,Map<string,List<String>>>> mapOfCountrywithCountryCodeContinent = new Map<string,Map<string,Map<string,List<String>>>>();
 
   public Country(){
     countryDetails();
