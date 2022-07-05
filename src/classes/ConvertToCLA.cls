@@ -4,10 +4,8 @@ public with sharing class ConvertToCLA {
     List<Account> accounts = new List<Account>();
     public void convertType(String phoneNumber) {
         List<List<SObject>> results = [FIND :phoneNumber 
-            IN Phone FIELDS 
-            RETURNING Contact(Id, Phone, FirstName, LastName), 
-            Lead(Id, Phone, FirstName, LastName), 
-            Account(Id, Phone, Name)];
+                                       IN Phone FIELDS RETURNING Contact(Id, Phone, FirstName, LastName), 
+                                       Lead(Id, Phone, FirstName, LastName), Account(Id, Phone, Name)];
         List<SObject> records = new List<SObject>();
         records.addAll(results[0]); //add Contact results to our results super-set
         records.addAll(results[1]); //add Lead results

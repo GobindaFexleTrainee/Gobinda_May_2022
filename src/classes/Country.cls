@@ -1,6 +1,6 @@
 public with sharing class Country {
   //mapOfCountrywithCountryCode
-  Map<string,Map<string,Map<string,List<String>>>>  mapOfCountrywithCountryCode= new Map<string,Map<string,Map<string,List<String>>>>();
+  Map<string,Map<string,Map<string,List<String>>>>   mapOfCountrywithCountryCodeContinent = new Map<string,Map<string,Map<string,List<String>>>>();
   public Country(){
     countryDetails();
   }
@@ -61,14 +61,14 @@ public with sharing class Country {
     Map<string,Map<string,List<String>>> mapOfStatewithCountryEurope=new Map<string,Map<string,List<String>>>();
     mapOfStatewithCountryEurope.put('Switzerland',mapOfDistrictwithStateSwitzerland);
     //mapOfCountrywithCountryCode
-    mapOfCountrywithCountryCode.put('+91',mapOfStatewithCountryAsia);
-    mapOfCountrywithCountryCode.put('+41',mapOfStatewithCountryEurope);
+    mapOfCountrywithCountryCodeContinent.put('+91',mapOfStatewithCountryAsia);
+    mapOfCountrywithCountryCodeContinent.put('+41',mapOfStatewithCountryEurope);
   }
   //Find a such country ,state and district combination where start with s
   public void searchWithLetter(string letter){
-    for(string countrycode: mapOfCountrywithCountryCode.keySet()){
+    for(string countrycode: mapOfCountrywithCountryCodeContinent.keySet()){
       Map<string,Map<string,List<string>>> mapOfStatewithCountry= new Map<string,Map<string,List<string>>>();
-      mapOfStatewithCountry=mapOfCountrywithCountryCode.get(countrycode);
+      mapOfStatewithCountry=mapOfCountrywithCountryCodeContinent.get(countrycode);
       for(string country: mapOfStatewithCountry.keySet()){
         if(country.startsWith(letter)){
           Map<string,List<string>> mapOfDistrictsWithState= new Map<string,List<string>>();
@@ -96,9 +96,9 @@ public with sharing class Country {
   //Find such a districts which length is more or equal to some number
   public void searchWithLength(integer length){
     system.debug('Districts which length is more or equal to some number:::');
-    for(string countrycode : mapOfCountrywithCountryCode.keySet()){
+    for(string countrycode : mapOfCountrywithCountryCodeContinent.keySet()){
       Map<string,Map<string,List<string>>> mapOfStatewithCountry= new Map<string,Map<string,List<string>>>();
-      mapOfStatewithCountry=mapOfCountrywithCountryCode.get(countrycode);
+      mapOfStatewithCountry=mapOfCountrywithCountryCodeContinent.get(countrycode);
       for(string country : mapOfStatewithCountry.keySet()){
         Map<string,List<string>> mapOfDistrictsWithState= new Map<string,List<string>>();
         mapOfDistrictsWithState=mapOfStatewithCountry.get(country);
