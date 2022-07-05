@@ -1,6 +1,8 @@
 public with sharing class Country {
+ 
   //mapOfCountrywithCountryCode
   Map<string,Map<string,Map<string,List<String>>>>   mapOfCountrywithCountryCodeContinent = new Map<string,Map<string,Map<string,List<String>>>>();
+
   public Country(){
     countryDetails();
   }
@@ -49,16 +51,24 @@ public with sharing class Country {
     schwyzDistrictName.add('Rothenthurm');
     schwyzDistrictName.add('Alpthal');
     schwyzDistrictName.add('Muotathal');
+
     //mapOfDistrictwithState
     Map<string,List<String>> mapOfDistrictwithStateIndia=new  Map<string,List<String>>();
+
     mapOfDistrictwithStateIndia.put('WestBengal',westBengalDistrictName);
     mapOfDistrictwithStateIndia.put('Rajasthan',rajasthanDistrictName);
+
     Map<string,List<String>> mapOfDistrictwithStateSwitzerland=new  Map<string,List<String>>();
+
     mapOfDistrictwithStateSwitzerland.put('Schwyz',schwyzDistrictName);
+    
     //mapOfStatewithCountry
     Map<string,Map<string,List<String>>> mapOfStatewithCountryAsia=new Map<string,Map<string,List<String>>>();
+
     mapOfStatewithCountryAsia.put('India',mapOfDistrictwithStateIndia);
+
     Map<string,Map<string,List<String>>> mapOfStatewithCountryEurope=new Map<string,Map<string,List<String>>>();
+
     mapOfStatewithCountryEurope.put('Switzerland',mapOfDistrictwithStateSwitzerland);
     //mapOfCountrywithCountryCode
     mapOfCountrywithCountryCodeContinent.put('+91',mapOfStatewithCountryAsia);
@@ -67,11 +77,15 @@ public with sharing class Country {
   //Find a such country ,state and district combination where start with s
   public void searchWithLetter(string letter){
     for(string countrycode: mapOfCountrywithCountryCodeContinent.keySet()){
+
       Map<string,Map<string,List<string>>> mapOfStatewithCountry= new Map<string,Map<string,List<string>>>();
+
       mapOfStatewithCountry=mapOfCountrywithCountryCodeContinent.get(countrycode);
       for(string country: mapOfStatewithCountry.keySet()){
         if(country.startsWith(letter)){
+
           Map<string,List<string>> mapOfDistrictsWithState= new Map<string,List<string>>();
+
           mapOfDistrictsWithState=mapOfStatewithCountry.get(country);
           for(string states: mapOfDistrictsWithState.keySet()){
             if(states.startsWith(letter)){
@@ -97,10 +111,14 @@ public with sharing class Country {
   public void searchWithLength(integer length){
     system.debug('Districts which length is more or equal to some number:::');
     for(string countrycode : mapOfCountrywithCountryCodeContinent.keySet()){
+
       Map<string,Map<string,List<string>>> mapOfStatewithCountry= new Map<string,Map<string,List<string>>>();
+
       mapOfStatewithCountry=mapOfCountrywithCountryCodeContinent.get(countrycode);
       for(string country : mapOfStatewithCountry.keySet()){
+
         Map<string,List<string>> mapOfDistrictsWithState= new Map<string,List<string>>();
+
         mapOfDistrictsWithState=mapOfStatewithCountry.get(country);
         for(string states : mapOfDistrictsWithState.keySet()){
           List<string> districts=new List<string>();
