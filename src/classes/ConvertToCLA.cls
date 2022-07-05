@@ -2,7 +2,7 @@ public with sharing class ConvertToCLA {
     List<Contact> contacts = new List<Contact>();
     List<Lead> leads = new List<Lead>();
     List<Account> accounts = new List<Account>();
-    public void ConvertType(String phoneNumber) {
+    public void convertType(String phoneNumber) {
         List<List<SObject>> results = [FIND :phoneNumber 
             IN Phone FIELDS 
             RETURNING Contact(Id, Phone, FirstName, LastName), 
