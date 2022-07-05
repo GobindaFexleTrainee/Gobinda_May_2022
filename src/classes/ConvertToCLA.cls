@@ -22,8 +22,8 @@ public with sharing class ConvertToCLA {
                 }
             }
         }     
-    system.debug(contacts);
-    system.debug(leads);
-    system.debug(accounts);
+        system.debug(contacts);
+        system.debug(leads);
+        system.debug(accounts);
     }
 }
