@@ -3,10 +3,12 @@ public with sharing class Country {
     //mapOfCountrywithCountryCode
     Map<string,Map<string,Map<string,List<String>>>>   mapOfCountrywithCountryCodeContinent = new Map<string,Map<string,Map<string,List<String>>>>();
 
+    boolean notfound=true;
+
     public Country(){
         countryDetails();
     }
-    boolean notfound=true;
+    
     public  void countryDetails() {
         //district
         List<string> westBengalDistrictName= new List<string>();
