@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ConvertToCLA</members>
-        <members>Country</members>
+        <members>Dml</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Account.BillingCity__c</members>
+        <members>Account.MyExtID__c</members>
+        <members>Opportunity.Account</members>
+        <name>CustomField</name>
     </types>
     <version>53.0</version>
 </Package>
