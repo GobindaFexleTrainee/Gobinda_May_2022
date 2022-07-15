@@ -15,8 +15,7 @@ public with sharing class Dml {
     public void AddingAndRetrieving(){
         // Query existing account.
         Account AcDetails= [SELECT Name,Industry 
-        FROM Account 
-        WHERE Name='Salesforece' LIMIT 1];
+                            FROM Account WHERE Name='Salesforece' LIMIT 1];
         // Write the old values the debug log before updating them.
         System.debug('Account Name before update: ' + AcDetails.Name); // Name is Account Example
         System.debug('Account Industry before update: ' + AcDetails.Industry);// Industry is not set
@@ -45,10 +44,7 @@ public with sharing class Dml {
         try {
             insert accts;            
             // Update account Acme2.
-            accountToUpdate = 
-                [SELECT BillingCity__c FROM Account 
-                 WHERE Name='Acme2' AND BillingCity__c='San Francisco'
-                 LIMIT 1];
+            accountToUpdate =[SELECT BillingCity__c FROM Account WHERE Name='Acme2' AND BillingCity__c='San Francisco'LIMIT 1];
             // Update the billing city.
             accountToUpdate.BillingCity__c = 'New York';
             // Make the update call.
