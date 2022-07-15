@@ -1,7 +1,7 @@
 public with sharing class Dml {
     public void  BulkDMLOperation() {
         List<Contact> updatedList = new List<Contact>();
-        List<Contact> conList = [Select Department , Description from Contact];
+        List<Contact> conList = [Select Department , Description from Contact LIMIT 5];
         for(Contact con : conList) {
             if (con.Department == 'Finance') {
                 con.Description = 'New description';
@@ -37,16 +37,16 @@ public with sharing class Dml {
     public void InsertingAndUpdatingReceords(){
         Account[] accts = new List<Account>();
         for(Integer i=0;i<3;i++) {
-            Account a = new Account(Name='Acme' + i, BillingCity__c='San Francisco');
+            Account a = new Account(Name='Acme' + i, BillingAddress='San Francisco');
             accts.add(a);
         }
         Account accountToUpdate;
         try {
             insert accts;            
             // Update account Acme2.
-            accountToUpdate =[SELECT BillingCity__c FROM Account WHERE Name='Acme2' AND BillingCity__c='San Francisco'LIMIT 1];
+            accountToUpdate =[SELECT BillingAddress FROM Account WHERE Name='Acme2' AND BillingAddress='San Francisco'LIMIT 1];
             // Update the billing city.
-            accountToUpdate.BillingCity__c = 'New York';
+            accountToUpdate.BillingAddress = 'New York';
             // Make the update call.
             update accountToUpdate;
         } catch(DmlException e) {
@@ -54,8 +54,8 @@ public with sharing class Dml {
         }   
         // Verify that the billing city was updated to New York.
         Account afterUpdate = 
-            [SELECT BillingCity__c FROM Account WHERE Id=:accountToUpdate.Id];
-        System.assertEquals('New York', afterUpdate.BillingCity__c);  
+            [SELECT BillingAddress FROM Account WHERE Id=:accountToUpdate.Id];
+        System.assertEquals('New York', afterUpdate.BillingAddress);  
     }
     //Creating Parent and Child Records in a Single Statement Using Foreign Keys
     public void ParentAndChildRecords(){
@@ -99,12 +99,12 @@ public with sharing class Dml {
     }
     //Upserting Records
     public void DmlUpserting(){
-        Account[] acctsList = [SELECT Id, Name, BillingCity__c
-                               FROM Account WHERE BillingCity__c= 'Bombay'];
+        Account[] acctsList = [SELECT Id, Name, BillingAddress
+                               FROM Account WHERE BillingAddress= 'Bombay'];
         for (Account a : acctsList) {
-            a.BillingCity__c= 'Mumbai';
+            a.BillingAddress= 'Mumbai';
         }
-        Account newAcct = new Account(Name = 'Acme', BillingCity__c = 'San Francisco');
+        Account newAcct = new Account(Name = 'Acme', BillingAddress = 'San Francisco');
         acctsList.add(newAcct);
         try {
             upsert acctsList;
