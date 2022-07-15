@@ -4,11 +4,5 @@
         <members>Dml</members>
         <name>ApexClass</name>
     </types>
-    <types>
-        <members>Account.BillingCity__c</members>
-        <members>Account.MyExtID__c</members>
-        <members>Opportunity.Account</members>
-        <name>CustomField</name>
-    </types>
     <version>53.0</version>
 </Package>
