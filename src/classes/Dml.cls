@@ -37,16 +37,16 @@ public with sharing class Dml {
     public void InsertingAndUpdatingReceords(){
         Account[] accts = new List<Account>();
         for(Integer i=0;i<3;i++) {
-            Account a = new Account(Name='Acme' + i, BillingAddress='San Francisco');
+            Account a = new Account(Name='Acme' + i, BillingCity='San Francisco');
             accts.add(a);
         }
         Account accountToUpdate;
         try {
             insert accts;            
             // Update account Acme2.
-            accountToUpdate =[SELECT BillingAddress FROM Account WHERE Name='Acme2' AND BillingAddress='San Francisco'LIMIT 1];
+            accountToUpdate =[SELECT BillingCity FROM Account WHERE Name='Acme2' AND BillingCity='San Francisco'LIMIT 1];
             // Update the billing city.
-            accountToUpdate.BillingAddress = 'New York';
+            accountToUpdate.BillingCity = 'New York';
             // Make the update call.
             update accountToUpdate;
         } catch(DmlException e) {
@@ -54,8 +54,8 @@ public with sharing class Dml {
         }   
         // Verify that the billing city was updated to New York.
         Account afterUpdate = 
-            [SELECT BillingAddress FROM Account WHERE Id=:accountToUpdate.Id];
-        System.assertEquals('New York', afterUpdate.BillingAddress);  
+            [SELECT BillingCity FROM Account WHERE Id=:accountToUpdate.Id];
+        System.assertEquals('New York', afterUpdate.BillingCity);  
     }
     //Creating Parent and Child Records in a Single Statement Using Foreign Keys
     public void ParentAndChildRecords(){
@@ -99,12 +99,12 @@ public with sharing class Dml {
     }
     //Upserting Records
     public void DmlUpserting(){
-        Account[] acctsList = [SELECT Id, Name, BillingAddress
-                               FROM Account WHERE BillingAddress= 'Bombay'];
+        Account[] acctsList = [SELECT Id, Name, BillingCity
+                               FROM Account WHERE BillingCity= 'Bombay'];
         for (Account a : acctsList) {
-            a.BillingAddress= 'Mumbai';
+            a.BillingCity= 'Mumbai';
         }
-        Account newAcct = new Account(Name = 'Acme', BillingAddress = 'San Francisco');
+        Account newAcct = new Account(Name = 'Acme', BillingCity = 'San Francisco');
         acctsList.add(newAcct);
         try {
             upsert acctsList;
