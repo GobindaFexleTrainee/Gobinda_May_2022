@@ -25,9 +25,8 @@ public with sharing class Dml {
         // Persist the changes.
         update AcDetails;
         // Get a new copy of the account from the database with the two fields.
-        Account AcDetails1 = [SELECT Name,Industry 
-        FROM Account 
-        WHERE Name='Account of the Day' LIMIT 1];
+        Account AcDetails1 = [SELECT Name,Industry FROM Account 
+                              WHERE Name='Account of the Day' LIMIT 1];
         // Verify that updated field values were persisted.
         System.assertEquals('Account of the Day', AcDetails1.Name);
         System.assertEquals('Technology', AcDetails1.Industry);
