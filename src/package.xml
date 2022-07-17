@@ -4,5 +4,9 @@
         <members>Dml</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>MyExtID__c</members>
+        <name>CustomField</name>
+    </types>
     <version>53.0</version>
 </Package>
