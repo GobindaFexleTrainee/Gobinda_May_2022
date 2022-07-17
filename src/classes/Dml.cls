@@ -109,6 +109,7 @@ public with sharing class Dml {
             upsert acctsList;
         } catch (DmlException e) {
             // Process exception here
+            System.debug('An unexpected error has occurred: ' + e.getMessage());
         }  
     } 
 }
