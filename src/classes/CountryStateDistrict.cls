@@ -85,16 +85,13 @@ public with sharing class CountryStateDistrict {
                     wrapperCountryObj.states.add(wrapperStateObj);
                 }
             }
-            country=new list<Country>();
-            country.add(wrapperCountryObj);
-            string jsonString=JSON.serialize(country);
+            string jsonString=JSON.serialize(wrapperCountryObj);
             countryStateDistrictList[0].Country_JSON_Data__c=jsonString;
-            system.debug(jsonString);
+            system.debug('Json Hierarchy'+jsonString);
             update countryStateDistrictList;
         }
     }
     //Wrapper classes for JSON generation
-    public List<Country> country{get;set;}
     public class Country{
         public string countryName{get;set;}
         public string countryCode{get;set;}
