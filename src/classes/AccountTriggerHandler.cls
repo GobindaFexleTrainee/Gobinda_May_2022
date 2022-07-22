@@ -1,8 +1,8 @@
 public with sharing class AccountTriggerHandler {
     public static void addAccountType(List<Account> listOfAccount) {
         for(Account account: listOfAccount){
-            if(account.Type=='Saving'){
-                account.AccountNumber = 'SB'+ account.AccountNumber;
+            if(account.Type=='Savings Account'){
+                account.AccountNumber = 'SA'+ account.AccountNumber;
             }
             if(account.Type=='Fixed Deposit'){
                 account.AccountNumber = 'FD'+ account.AccountNumber;
