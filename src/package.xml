@@ -10,6 +10,7 @@
     </types>
     <types>
         <members>Account.Email__c</members>
+        <members>Account.Type</members>
         <name>CustomField</name>
     </types>
     <types>

@@ -9,6 +9,11 @@
         <type>Email</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Type</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
     <recordTypes>
         <fullName>Axis_Bank</fullName>
         <active>true</active>
