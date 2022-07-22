@@ -8,5 +8,13 @@
         <members>Trigger_Operations</members>
         <name>ApexTrigger</name>
     </types>
+    <types>
+        <members>Account.Email__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Account.Axis_Bank</members>
+        <name>RecordType</name>
+    </types>
     <version>53.0</version>
 </Package>
