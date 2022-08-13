@@ -47,17 +47,17 @@ public with sharing class NewOpportunityTriggerHandler {
                         else{
                             sensor1.add(s.trim());
                         }                   
-                    }   
+                    }
+                    allSensorlist.add(sensor1); 
                 }
-                allSensorlist.add(sensor1); 
                 if(oppp.Return_To_HQ__c != null){
                     for(string s:oppp.Return_To_HQ__c.split('\\\n'))
                     {
                         hqsensor.add(s.trim());
                     }
+                    allSensorlist.add(hqsensor);  
                 }
             }     
-            allSensorlist.add(hqsensor);  
             opportunityIdSensorSetMap.put(oppp.id, allSensorlist);
         }
         List<Automobile_Sensor__c> autoS1=[SELECT Id,Name,Account__c FROM Automobile_Sensor__c WHERE Opportunity__c IN :  opportunityIdSensorSetMap.keyset()];
@@ -69,16 +69,16 @@ public with sharing class NewOpportunityTriggerHandler {
         Set<String> atcList=new Set<String>();
         Set<String> atagcList=new Set<String>();
         for(Automobile_Sensor__c assc:autoS1){  
-        ascList.add(assc.Name);
+            ascList.add(assc.Name);
         }
         for(Automobile_Presence_Sensor__c apsc:autoP1){  
-        apscList.add(apsc.Name);
+            apscList.add(apsc.Name);
         }
         for(Automobile_TDU__c atc:autoT1){  
-        atcList.add(atc.Name);
+            atcList.add(atc.Name);
         }
         for(Automobile_Tag__c atagc:autoTag1){  
-        atagcList.add(atagc.Name);
+            atagcList.add(atagc.Name);
         }
         for(Opportunity opp: listOfOpportunity){
             if(opp.StageName=='Shipped To Customer'){
@@ -266,61 +266,73 @@ public with sharing class NewOpportunityTriggerHandler {
                     for(Automobile_Sensor__c sennames: autoS)
                     {
                         if(sennames.Account__c==oppor1.AccountId){
-                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+
+                                  '<td><tr>';
                         }
                     }
                     for(Automobile_Sensor__c sennames: autoS2)
                     {
                         if(sennames.Account__c==oppor1.Shipment_Account__c){
-                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
+                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+
+                                  ' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
                         }
                         else{
-                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name
+                                  +' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
                         }
                     }
                     for(Automobile_Presence_Sensor__c sennames: autoP)
                     {
                         if(sennames.Account__c==oppor1.AccountId){
-                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+
+                                  mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
                         }
                     }
                     for(Automobile_Presence_Sensor__c sennames: autoP2)
                     {
                         if(sennames.Account__c==oppor1.Shipment_Account__c){
-                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
+                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+
+                                  mapIdAcc.get(oppor1.AccountId).Name+' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
                         }
                         else{
-                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Presence Sensor<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+
+                                  mapIdAcc.get(oppor1.Shipment_Account__c).Name+' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
                         }
                     }
                     for(Automobile_TDU__c sennames: autoT)
                     {
                         if(sennames.Account__c==oppor1.AccountId){
-                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+
+                                  '<td><tr>';
                         }
                     }
                     for(Automobile_TDU__c sennames: autoT2)
                     {
                         if(sennames.Account__c==oppor1.Shipment_Account__c){
-                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
+                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+
+                                  ' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
                         }
                         else{
-                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>TDU<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+
+                                  ' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
                         }
                     }
                     for(Automobile_Tag__c sennames: autoTag)
                     {
                         if(sennames.Account__c==oppor1.AccountId){
-                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+
+                                  '<td><tr>';
                         }
                     }
                     for(Automobile_Tag__c sennames: autoTag2)
                     {
                         if(sennames.Account__c==oppor1.Shipment_Account__c){
-                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
+                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor is moved from installation account '+mapIdAcc.get(oppor1.AccountId).Name+
+                                  ' to shipment account'+mapIdAcc.get(oppor1.Shipment_Account__c).Name+'<td><tr>';
                         }
                         else{
-                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
+                            body+='<tr><td>Tag<td><td>'+sennames.Name+'<td><td>Sensor is moved from shipment account '+mapIdAcc.get(oppor1.Shipment_Account__c).Name+
+                                  ' to installation account'+mapIdAcc.get(oppor1.AccountId).Name+'<td><tr>';
                         }
                     }
                     body+='</table><br>Unsuccessful:<br>';
@@ -330,16 +342,20 @@ public with sharing class NewOpportunityTriggerHandler {
                             body+='<tr><td>Sensor<td><td>'+sensorname+'<td><td>Invalid Sensor<td><tr>';
                         }
                         if(ascList.contains(sensorname)){
-                            body+='<tr><td>Sensor<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'b/c it is already exists under the installation account.<td><tr>';
+                            body+='<tr><td>Sensor<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name
+                                  +'b/c it is already exists under the installation account.<td><tr>';
                         }
                         if(apscList.contains(sensorname)){
-                            body+='<tr><td>Presence Sensor<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'b/c it is already exists under the installation account.<td><tr>';
+                            body+='<tr><td>Presence Sensor<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+
+                                  mapIdAcc.get(oppor1.AccountId).Name+'b/c it is already exists under the installation account.<td><tr>';
                         }
                         if(atcList.contains(sensorname)){
-                            body+='<tr><td>TDU<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'b/c it is already exists under the installation account.<td><tr>';
+                            body+='<tr><td>TDU<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+
+                                  'b/c it is already exists under the installation account.<td><tr>';
                         }
                         if(atagcList.contains(sensorname)){
-                            body+='<tr><td>TAG<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+'b/c it is already exists under the installation account.<td><tr>';
+                            body+='<tr><td>TAG<td><td>'+sensorname+'<td><td>Presence Sensor can’t inserted under installation account'+mapIdAcc.get(oppor1.AccountId).Name+
+                                  'b/c it is already exists under the installation account.<td><tr>';
                         }
                     }
                     body+='</table>';
