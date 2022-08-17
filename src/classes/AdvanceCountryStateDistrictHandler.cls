@@ -22,7 +22,8 @@ public with sharing class AdvanceCountryStateDistrictHandler
         {
             stateIds.add(districts.State_Name__c);
         }
-        List<State__c> StateDistrictList=[SELECT Id,Name,State_Code__c,Total_Number_of_Districts__c,(SELECT Id,Name,District_Pin_Code__c FROM Districts__r) FROM State__c WHERE Id IN : stateIds];
+        List<State__c> StateDistrictList=[SELECT Id,Name,State_Code__c,Total_Number_of_Districts__c,(SELECT Id,Name,District_Pin_Code__c FROM Districts__r) 
+                                          FROM State__c WHERE Id IN : stateIds];
         if(!StateDistrictList.isEmpty())
         {
             States wrapperStateObj=new States();
@@ -70,9 +71,8 @@ public with sharing class AdvanceCountryStateDistrictHandler
             countryids.add(states.Country_Name__c);
         }
 
-        List<Country__c> countryStateDistrictList=[SELECT Id,Name,Country_Code__c,Total_Number_of_States__c, 
-                                                    Total_Number_of_Districts__c,(SELECT Id,Name,State_Code__c,Total_Number_of_Districts__c FROM States__r) FROM Country__c
-                                                    WHERE Id IN : countryids];
+        List<Country__c> countryStateDistrictList=[SELECT Id,Name,Country_Code__c,Total_Number_of_States__c,Total_Number_of_Districts__c,(SELECT Id,Name,State_Code__c,
+                                                   Total_Number_of_Districts__c FROM States__r) FROM Country__c WHERE Id IN : countryids];
                                                     
         List<District__c> DistrictsList = [SELECT Id, Name,State_Name__c,District_Pin_Code__c FROM District__c WHERE 
                                            State_Name__r.Country_Name__c IN : countryids];
