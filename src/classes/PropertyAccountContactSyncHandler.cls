@@ -1,4 +1,4 @@
-public with sharing class PropertyAccountContactSync {
+public with sharing class PropertyAccountContactSyncHandler {
 
     public static boolean Allow_Account_Update = True;
     public static boolean Allow_Contact_Update = True;
