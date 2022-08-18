@@ -1,5 +1,7 @@
-public with sharing class NewOpportunityTriggerHandler {
-    public static void  InsertAndUpdateAndEmail(List<Opportunity> listOfOpportunity) {
+public with sharing class NewOpportunityTriggerHandler 
+{
+    public static void  InsertAndUpdateAndEmail(List<Opportunity> listOfOpportunity) 
+    {
         Map<String, List<Set<String>>> opportunityIdSensorSetMap= new Map<String, List<Set<String>>>();
         Set<String> sensor1 = new Set<String>();
         Set<String> hqsensor = new Set<String>();
@@ -11,7 +13,9 @@ public with sharing class NewOpportunityTriggerHandler {
         List<Automobile_Presence_Sensor__c> autoP2 = new List<Automobile_Presence_Sensor__c>();
         List<Automobile_TDU__c> autoT2 = new List<Automobile_TDU__c>();
         List<Automobile_Tag__c> autoTag2 = new List<Automobile_Tag__c>();
-        for(Opportunity oppp: listOfOpportunity){
+        
+        for(Opportunity oppp: listOfOpportunity)
+        {
             sensor1 = new Set<String>();
             hqsensor = new Set<String>();
             List<Set<String>> allSensorlist = new List<Set<String>>();
@@ -60,6 +64,7 @@ public with sharing class NewOpportunityTriggerHandler {
             }     
             opportunityIdSensorSetMap.put(oppp.id, allSensorlist);
         }
+        
         List<Automobile_Sensor__c> autoS1=[SELECT Id,Name,Account__c FROM Automobile_Sensor__c WHERE Opportunity__c IN :  opportunityIdSensorSetMap.keyset()];
         List<Automobile_Presence_Sensor__c> autoP1=[SELECT Id,Name,Account__c FROM Automobile_Presence_Sensor__c WHERE Opportunity__c IN : opportunityIdSensorSetMap.keyset()];
         List<Automobile_TDU__c> autoT1=[SELECT Id,Name,Account__c FROM Automobile_TDU__c WHERE Opportunity__c IN :  opportunityIdSensorSetMap.keyset()];
@@ -68,21 +73,28 @@ public with sharing class NewOpportunityTriggerHandler {
         Set<String> apscList=new Set<String>();
         Set<String> atcList=new Set<String>();
         Set<String> atagcList=new Set<String>();
-        for(Automobile_Sensor__c assc:autoS1){  
+        
+        for(Automobile_Sensor__c assc:autoS1)
+        {  
             ascList.add(assc.Name);
-        }
-        for(Automobile_Presence_Sensor__c apsc:autoP1){  
+        }   
+        for(Automobile_Presence_Sensor__c apsc:autoP1)
+        {  
             apscList.add(apsc.Name);
         }
-        for(Automobile_TDU__c atc:autoT1){  
+        for(Automobile_TDU__c atc:autoT1)
+        {  
             atcList.add(atc.Name);
         }
-        for(Automobile_Tag__c atagc:autoTag1){  
+        for(Automobile_Tag__c atagc:autoTag1)
+        {  
             atagcList.add(atagc.Name);
         }
-        for(Opportunity opp: listOfOpportunity){
+        for(Opportunity opp: listOfOpportunity)
+        {
             if(opp.StageName=='Shipped To Customer'){
-                for(string senlist:opportunityIdSensorSetMap.get(opp.id)[0]){
+                for(string senlist:opportunityIdSensorSetMap.get(opp.id)[0])
+                {
                     if(senlist.startsWith('00:11:CE:00')) {
                         if(!ascList.contains(senlist)){
                             Automobile_Sensor__c obj=new Automobile_Sensor__c();
@@ -122,7 +134,8 @@ public with sharing class NewOpportunityTriggerHandler {
                 }
             }
             if(opp.StageName=='Return To HQ'){
-                for(string hqsenlist:opportunityIdSensorSetMap.get(opp.id)[1]){
+                for(string hqsenlist:opportunityIdSensorSetMap.get(opp.id)[1])
+                {
                     if(hqsenlist.startsWith('00:11:CE:00')){
                         for(Automobile_Sensor__c ascnames:autoS1){
                             if(ascnames.Name==hqsenlist){
@@ -132,7 +145,8 @@ public with sharing class NewOpportunityTriggerHandler {
                         }
                     }
                     if(hqsenlist.startsWith('00:11:CE:D')){
-                        for(Automobile_Presence_Sensor__c apcnames:autoP1){
+                        for(Automobile_Presence_Sensor__c apcnames:autoP1)
+                        {
                             if(apcnames.Name==hqsenlist){
                                 apcnames.Account__c=opp.Shipment_Account__c;
                                 autoP2.add(apcnames);
@@ -140,7 +154,8 @@ public with sharing class NewOpportunityTriggerHandler {
                         }
                     }
                     if(hqsenlist.startsWith('00:11:CE:E')){
-                        for(Automobile_TDU__c atcnames:autoT1){
+                        for(Automobile_TDU__c atcnames:autoT1)
+                        {
                             if(atcnames.Name==hqsenlist){
                                 atcnames.Account__c=opp.Shipment_Account__c;
                                 autoT2.add(atcnames);
@@ -160,7 +175,8 @@ public with sharing class NewOpportunityTriggerHandler {
             if(opp.StageName=='Return To Customer'){
                 for(string sensorlist:opportunityIdSensorSetMap.get(opp.id)[0]){
                     if(sensorlist.startsWith('00:11:CE:00')){
-                        for(Automobile_Sensor__c ascnames:autoS1){
+                        for(Automobile_Sensor__c ascnames:autoS1)
+                        {
                             if(ascnames.Name==sensorlist){
                                 ascnames.Account__c=opp.AccountId;
                                 autoS2.add(ascnames);
@@ -175,7 +191,8 @@ public with sharing class NewOpportunityTriggerHandler {
                         }
                     }
                     if(sensorlist.startsWith('00:11:CE:D')){
-                        for(Automobile_Presence_Sensor__c apcnames:autoP1){
+                        for(Automobile_Presence_Sensor__c apcnames:autoP1)
+                        {
                             if(apcnames.Name==sensorlist){
                                 apcnames.Account__c=opp.AccountId;
                                 autoP2.add(apcnames);
@@ -190,7 +207,8 @@ public with sharing class NewOpportunityTriggerHandler {
                         }
                     }
                     if(sensorlist.startsWith('00:11:CE:E')){
-                        for(Automobile_TDU__c atcnames:autoT1){
+                        for(Automobile_TDU__c atcnames:autoT1)
+                        {
                             if(atcnames.Name==sensorlist){
                                 atcnames.Account__c=opp.AccountId;
                                 autoT2.add(atcnames);
@@ -205,7 +223,8 @@ public with sharing class NewOpportunityTriggerHandler {
                         }
                     }
                     if(sensorlist.substring(0,3).isNumeric()){
-                        for( Automobile_Tag__c atagcnames:autoTag1){
+                        for( Automobile_Tag__c atagcnames:autoTag1)
+                        {
                             if(atagcnames.Name==sensorlist){
                                 atagcnames.Account__c=opp.AccountId;
                                 autoTag2.add(atagcnames);
@@ -254,8 +273,11 @@ public with sharing class NewOpportunityTriggerHandler {
         Map<Id,Account> mapIdAcc=new Map<Id,Account>([SELECT Id,Name FROM Account WHERE Id IN:accId]);
         //email sending
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
-        for(Opportunity oppor1: listOfOpportunity){
-            try{
+        
+        for(Opportunity oppor1: listOfOpportunity)
+        {
+            try
+            {
                 if(oppor1.StageName=='Shipped To Customer'||oppor1.StageName=='Return To Customer'||oppor1.StageName=='Return To HQ'){  
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
                     email.setToAddresses(new String[] {oppor1.Email__c});
@@ -337,7 +359,8 @@ public with sharing class NewOpportunityTriggerHandler {
                     }
                     body+='</table><br>Unsuccessful:<br>';
                     body+='<table border="1"><tr><th>Automobile Type<th><th>Name<th><th>Message<th><tr>';
-                    for(string sensorname:opportunityIdSensorSetMap.get(oppor1.id)[0]){
+                    for(string sensorname:opportunityIdSensorSetMap.get(oppor1.id)[0])
+                    {
                         if(!sensorname.startsWith('00:11:CE:00') && !sensorname.startsWith('00:11:CE:D') && !sensorname.startsWith('00:11:CE:E') && !sensorname.substring(0,3).isNumeric()){
                             body+='<tr><td>Sensor<td><td>'+sensorname+'<td><td>Invalid Sensor<td><tr>';
                         }
@@ -364,7 +387,8 @@ public with sharing class NewOpportunityTriggerHandler {
                 }
                 Messaging.sendEmail(emails);
             }
-            catch (Exception e){
+            catch (Exception e)
+            {
                 System.debug('exception'+e.getMessage());
             }
         }   
