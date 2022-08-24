@@ -22,7 +22,7 @@ public with sharing class PropertyAccountContactSyncHandler {
                  con.Status__c = mapOfPropertyId.get(con.AccountId).Status__c;
              }
              else if(con.Status__c != null && con.Status__c != mapOfPropertyId.get(con.AccountId).Status__c){
-                con.Status__c = mapOfPropertyId.get(con.AccountId).Status__c;
+                 con.Status__c = mapOfPropertyId.get(con.AccountId).Status__c;
              }
          }
          PropertyAccountContactSync.Allow_Contact_Update = False;
